@@ -7,5 +7,9 @@
 .cards__list {
   border-radius: 1px;
   color: black;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 325px);
+  grid-gap: 20px;
+  /* padding: 0 20px; */
+  justify-content: center;
 }
