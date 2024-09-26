@@ -1,0 +1,11 @@
+.cards {
+}
+
+.cards__text {
+}
+
+.cards__list {
+  border-radius: 1px;
+  color: black;
+  display: flex;
+}
