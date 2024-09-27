@@ -2,14 +2,17 @@
 }
 
 .cards__text {
+  padding: 40px 0 34px 0;
+  /* margin: 0; */
+  font-size: 20px;
 }
 
 .cards__list {
-  border-radius: 1px;
   color: black;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 325px);
-  grid-gap: 20px;
-  /* padding: 0 20px; */
-  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  gap: 21px;
+  list-style-type: none;
 }
