@@ -1,13 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "../blocks/page.css";
+import { coordinates, APIkey } from "../utils/constants.js";
 import Header from "./Header";
 import Main from "./Main";
 import ModalWithForm from "../components/ModalWithForm";
+import ItemModal from "../components/ItemModal";
+import { getWeather, filterWeatherData } from "../utils/weatherApi";
 
 function App() {
-  const [weatherData, setWeatherData] = useState({ type: "hot" });
+  const [weatherData, setWeatherData] = useState({
+    type: "",
+    temp: { F: 999 },
+    city: "",
+  });
   const [activeModal, setActiveModal] = useState("");
+  const [selectedCard, setSelectedCard] = useState({});
+
+  const handleCardClick = (card) => {
+    setActiveModal("preview");
+    setSelectedCard(card);
+  };
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -17,17 +30,26 @@ function App() {
     setActiveModal("");
   };
 
+  useEffect(() => {
+    getWeather(coordinates, APIkey)
+      .then((data) => {
+        const filteredData = filterWeatherData(data);
+        setWeatherData(filteredData);
+      })
+      .catch(console.error);
+  }, []);
+
   return (
     <div className="page">
       <div className="page__content">
-        <Header handleAddClick={handleAddClick} />
-        <Main weatherData={weatherData} />
+        <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+        <Main weatherData={weatherData} handleCardClick={handleCardClick} />
       </div>
       <ModalWithForm
         title="New garment"
         buttonText="Add garment"
         activeModal={activeModal}
-        handleCloseClick={closeActiveModal}
+        onClose={closeActiveModal}
       >
         <label htmlFor="name" className="modal__label">
           Name{" "}
@@ -66,7 +88,11 @@ function App() {
           </label>
         </fieldset>
       </ModalWithForm>
-      >
+      <ItemModal
+        activeModal={activeModal}
+        card={selectedCard}
+        onClose={closeActiveModal}
+      />
     </div>
   );
 }
