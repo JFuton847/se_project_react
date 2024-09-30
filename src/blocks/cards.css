@@ -1,10 +1,8 @@
-.cards {
-}
-
 .cards__text {
   padding: 40px 0 34px 0;
   font-size: 20px;
   font-weight: 700;
+  line-height: 24.8px;
 }
 
 .cards__list {
