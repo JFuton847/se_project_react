@@ -1,0 +1,13 @@
+.footer {
+}
+
+.footer__content {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 171px 0 24px;
+}
+
+.footer__text {
+}
