@@ -11,7 +11,7 @@ function ItemModal({ isOpen, onClose, card }) {
         ></button>
         <img
           src={card.link}
-          alt={`Image of ${item.name}`}
+          alt={`Image of ${card.name}`}
           className="modal__image"
         />
         <div className="modal__footer">
