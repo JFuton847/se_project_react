@@ -1,0 +1,11 @@
+.sidebar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sidebar__username {
+  font: size 20px;
+  font-weight: 700px;
+  line-height: 24.8px;
+}

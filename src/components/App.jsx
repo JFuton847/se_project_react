@@ -6,6 +6,7 @@ import Header from "./Header";
 import Main from "./Main";
 import ModalWithForm from "../components/ModalWithForm";
 import ItemModal from "../components/ItemModal";
+import Profile from "../components/Profile";
 import { getWeather, filterWeatherData } from "../utils/weatherApi";
 import Footer from "./Footer";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext.js";
@@ -70,7 +71,7 @@ function App() {
                 />
               }
             />
-            <Route path="/profile" element={<p>PROFILE</p>} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </div>
         {activeModal === "add-garment" && (
