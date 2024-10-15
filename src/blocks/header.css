@@ -29,6 +29,7 @@
   line-height: 24px;
   border: none;
   cursor: pointer;
+  background-color: transparent;
 }
 
 .header__username {

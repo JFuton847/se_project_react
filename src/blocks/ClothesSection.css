@@ -1,5 +1,4 @@
 .clothes-section {
-  padding-left: 116px;
   display: flex;
   flex-direction: column;
 }
@@ -9,9 +8,19 @@
   gap: 20px;
 }
 
+.clothes-section__items {
+  color: black;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+  list-style-type: none;
+}
+
 .clothes-section__header {
   color: rgba(0, 0, 0, 1);
-  font-weight: 700px;
+  font-weight: 700;
   font-size: 20px;
   line-height: 24.8px;
 }
@@ -23,4 +32,5 @@
   line-height: 24.8px;
   border: none;
   cursor: pointer;
+  background-color: transparent;
 }

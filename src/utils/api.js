@@ -23,7 +23,7 @@ function addItems(itemData) {
 }
 
 function deleteItems(itemId) {
-  return fetch(`${baseUrl}/items/id`, {
+  return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
   }).then((res) => {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);

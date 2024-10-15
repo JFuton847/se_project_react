@@ -11,7 +11,7 @@ import { getWeather, filterWeatherData } from "../utils/weatherApi";
 import Footer from "./Footer";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext.js";
 import AddItemModal from "../components/AddItemModal";
-import { getItems, addItems } from "../utils/api.js";
+import { getItems, addItems, deleteItems } from "../utils/api.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -51,6 +51,15 @@ function App() {
     closeActiveModal();
   };
 
+  const onDeleteItem = (item) => {
+    deleteItems(item._id).then(() => {
+      setClothingItems((prevItems) =>
+        prevItems.filter((item) => item._id !== item._id)
+      );
+      closeActiveModal();
+    });
+  };
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -70,14 +79,6 @@ function App() {
       .catch(console.error);
   }, []);
 
-  // useEffect(() => {
-  //   getItems()
-  //     .then((data) => {
-  //       setClothingItems(data);
-  //     })
-  //     .catch(console.error);
-  // }, []);
-
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
@@ -92,14 +93,19 @@ function App() {
                 <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
-                  // pass clothingItems as a prop
                   clothingItems={clothingItems}
+                  onDeleteItem={onDeleteItem}
                 />
               }
             />
             <Route
               path="/profile"
-              element={<Profile onCardClick={handleCardClick} />}
+              element={
+                <Profile
+                  onCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                />
+              }
             />
           </Routes>
         </div>
@@ -114,6 +120,7 @@ function App() {
           isOpen={activeModal === "preview"}
           card={selectedCard}
           onClose={closeActiveModal}
+          onDeleteItem={onDeleteItem}
         />
         <Footer />
       </CurrentTemperatureUnitContext.Provider>
