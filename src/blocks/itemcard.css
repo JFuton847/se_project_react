@@ -14,6 +14,7 @@
   justify-content: center;
   border: 2px solid #fff;
   background-color: #fff;
+  white-space: nowrap;
   box-sizing: border-box;
   border-radius: 4px;
   width: 73px;

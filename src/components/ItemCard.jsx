@@ -1,4 +1,5 @@
 import "../blocks/itemcard.css";
+import "../blocks/card.css";
 
 function ItemCard({ item, onCardClick }) {
   const handleCardClick = () => {

@@ -1,6 +1,4 @@
 .clothes-section {
-  display: flex;
-  flex-direction: column;
 }
 
 .clothes-section__top {
@@ -10,8 +8,8 @@
 
 .clothes-section__items {
   color: black;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   margin: 0;
   padding: 0;
   gap: 20px;
