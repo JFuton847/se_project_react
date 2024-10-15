@@ -11,6 +11,7 @@ import { getWeather, filterWeatherData } from "../utils/weatherApi";
 import Footer from "./Footer";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext.js";
 import AddItemModal from "../components/AddItemModal";
+import { getItems, addItems } from "../utils/api.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -21,6 +22,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState([]);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -41,6 +43,10 @@ function App() {
   };
 
   const onAddItem = (values) => {
+    const { name, imageUrl, weather } = values;
+    addItems({ name, imageUrl, weather }).then((newItem) => {
+      setClothingItems((prevItems) => [...prevItems, newItem]);
+    });
     console.log("Item added:", values);
     closeActiveModal();
   };
@@ -53,6 +59,24 @@ function App() {
       })
       .catch(console.error);
   }, []);
+
+  useEffect(() => {
+    getItems()
+      .then((data) => {
+        console.log(data);
+        //set clothing items using data that was returned
+        setClothingItems(data);
+      })
+      .catch(console.error);
+  }, []);
+
+  // useEffect(() => {
+  //   getItems()
+  //     .then((data) => {
+  //       setClothingItems(data);
+  //     })
+  //     .catch(console.error);
+  // }, []);
 
   return (
     <div className="page">
@@ -68,6 +92,8 @@ function App() {
                 <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
+                  // pass clothingItems as a prop
+                  clothingItems={clothingItems}
                 />
               }
             />
