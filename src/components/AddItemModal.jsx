@@ -21,12 +21,21 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
   };
 
   const formRef = useRef(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formRef.current.checkValidity()) {
-      onAddItem({ name, imageUrl, weather });
-      onClose();
+      setIsSubmitting(true);
+      onAddItem({ name, imageUrl, weather })
+        .then(() => {
+          setIsSubmitting(false);
+          onClose();
+        })
+        .catch((error) => {
+          console.error("Error adding item:", error);
+          setIsSubmitting(false);
+        });
     } else {
       formRef.current.reportValidity();
     }
@@ -35,7 +44,7 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
   return (
     <ModalWithForm
       title="New garment"
-      buttonText="Add garment"
+      buttonText={isSubmitting ? "Adding..." : "Add garment"}
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}

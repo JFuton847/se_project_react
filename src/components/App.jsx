@@ -44,11 +44,15 @@ function App() {
 
   const onAddItem = (values) => {
     const { name, imageUrl, weather } = values;
-    addItems({ name, imageUrl, weather }).then((newItem) => {
-      setClothingItems((prevItems) => [newItem, ...prevItems]);
-    });
-    console.log("Item added:", values);
-    closeActiveModal();
+    addItems({ name, imageUrl, weather })
+      .then((newItem) => {
+        setClothingItems((prevItems) => [newItem, ...prevItems]);
+        console.log("Item added:", values);
+        closeActiveModal();
+      })
+      .catch((error) => {
+        console.error("Error adding item:", error);
+      });
   };
 
   const onDeleteItem = (item) => {
