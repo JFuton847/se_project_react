@@ -45,7 +45,7 @@ function App() {
   const onAddItem = (values) => {
     const { name, imageUrl, weather } = values;
     addItems({ name, imageUrl, weather }).then((newItem) => {
-      setClothingItems((prevItems) => [...prevItems, newItem]);
+      setClothingItems((prevItems) => [newItem, ...prevItems]);
     });
     console.log("Item added:", values);
     closeActiveModal();
@@ -54,7 +54,7 @@ function App() {
   const onDeleteItem = (item) => {
     deleteItems(item._id).then(() => {
       setClothingItems((prevItems) =>
-        prevItems.filter((item) => item._id !== item._id)
+        prevItems.filter((currentItem) => currentItem._id !== item._id)
       );
       closeActiveModal();
     });
@@ -104,6 +104,7 @@ function App() {
                 <Profile
                   onCardClick={handleCardClick}
                   clothingItems={clothingItems}
+                  handleAddClick={handleAddClick}
                 />
               }
             />

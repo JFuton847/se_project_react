@@ -40,7 +40,7 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <form ref={formRef} onSubmit={handleSubmit}>
+      <form ref={formRef}>
         <label htmlFor="name" className="modal__label">
           Name{" "}
           <input
