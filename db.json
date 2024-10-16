@@ -101,6 +101,18 @@
       "imageUrl": "https://mmv2api.s3.us-east-2.amazonaws.com/products/images/2-image-tsbathoodie-2-productimagenowatermark.jpg",
       "weather": "cold",
       "_id": 18
+    },
+    {
+      "name": "fdasf",
+      "imageUrl": "https://www.jacketmakers.com/wp-content/uploads/2021/09/fallout-hoodie.jpg",
+      "weather": "warm",
+      "_id": 19
+    },
+    {
+      "name": "Joker Hoodie",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/1178/0774/products/Joker_Hoodie_Front.jpg?",
+      "weather": "cold",
+      "_id": 20
     }
   ]
 }
