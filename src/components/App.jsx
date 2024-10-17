@@ -56,12 +56,16 @@ function App() {
   };
 
   const onDeleteItem = (item) => {
-    deleteItems(item._id).then(() => {
-      setClothingItems((prevItems) =>
-        prevItems.filter((currentItem) => currentItem._id !== item._id)
-      );
-      closeActiveModal();
-    });
+    deleteItems(item._id)
+      .then(() => {
+        setClothingItems((prevItems) =>
+          prevItems.filter((currentItem) => currentItem._id !== item._id)
+        );
+        closeActiveModal();
+      })
+      .catch((error) => {
+        console.error("Failed to delete item", error);
+      });
   };
 
   useEffect(() => {
