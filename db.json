@@ -95,6 +95,12 @@
       "imageUrl": "https://cdn.shopify.com/s/files/1/1178/0774/products/Joker_Hoodie_Front.jpg?",
       "weather": "cold",
       "_id": 23
+    },
+    {
+      "name": "Hoodie",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/1178/0774/products/Joker_Hoodie_Front.jpg?",
+      "weather": "cold",
+      "_id": 24
     }
   ]
 }
