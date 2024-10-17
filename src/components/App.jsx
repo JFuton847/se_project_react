@@ -44,7 +44,7 @@ function App() {
 
   const onAddItem = (values) => {
     const { name, imageUrl, weather } = values;
-    addItems({ name, imageUrl, weather })
+    return addItems({ name, imageUrl, weather })
       .then((newItem) => {
         setClothingItems((prevItems) => [newItem, ...prevItems]);
         console.log("Item added:", values);
