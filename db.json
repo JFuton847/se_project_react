@@ -101,6 +101,12 @@
       "imageUrl": "https://cdn.shopify.com/s/files/1/1178/0774/products/Joker_Hoodie_Front.jpg?",
       "weather": "cold",
       "_id": 24
+    },
+    {
+      "name": "Hoodie",
+      "imageUrl": "https://www.jacketmakers.com/wp-content/uploads/2021/09/fallout-hoodie.jpg",
+      "weather": "cold",
+      "_id": 25
     }
   ]
 }

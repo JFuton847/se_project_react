@@ -27,11 +27,9 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
     e.preventDefault();
     if (formRef.current.checkValidity()) {
       setIsSubmitting(true);
-      onAddItem({ name, imageUrl, weather });
-      setIsSubmitting(false);
-      onClose();
-    } else {
-      formRef.current.reportValidity();
+      onAddItem({ name, imageUrl, weather }).finally(() => {
+        setIsSubmitting(false);
+      });
     }
   };
 
@@ -42,6 +40,7 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      formRef={formRef}
     >
       <label htmlFor="name" className="modal__label">
         Name{" "}
