@@ -1,12 +1,7 @@
 import React, { useState, useRef } from "react";
-import ModalWithForm from "../components/ModalWithForm";
+import ModalWithForm from "./ModalWithForm";
 
-const RegisterModal = ({ onClose, onAddItem, isOpen }) => {
-  const [name, setName] = useState("");
-  const handleNameChange = (e) => {
-    console.log(e.target.value);
-    setName(e.target.value);
-  };
+const RegisterModal = ({ onClose, onRegister, isOpen }) => {
 
   const [createUserValues, setCreateUserValues] = useState({
     name: "name",
@@ -23,9 +18,10 @@ const RegisterModal = ({ onClose, onAddItem, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    onRegister(createUserValues);
     console.log("Submitting form with:", createUserValues);
   };
-};
+
 
 return (
   <ModalWithForm
@@ -67,6 +63,7 @@ return (
         type="text"
         className="modal__input"
         id="password"
+        name="password"
         placeholder="Password"
         value={createUserValues.password}
         onChange={handleChange}
