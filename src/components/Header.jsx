@@ -4,7 +4,7 @@ import "../blocks/header.css";
 import ToggleSwitch from "../components/ToggleSwitch";
 import Avatar from "../assets/avatar.png";
 
-function Header({ handleAddClick, weatherData }) {
+function Header({ handleAddClick, weatherData, isLoggedIn, setActiveModal }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -28,10 +28,32 @@ function Header({ handleAddClick, weatherData }) {
           >
             + Add Clothes
           </button>
-          <Link to="/profile" className="header__link">
-            <p className="header__username">James Petersen</p>
-            <img src={Avatar} alt="James Petersen" className="header__avatar" />
-          </Link>
+
+          {isLoggedIn ? (
+            <Link to="/profile" className="header__link">
+              <p className="header__username">James Petersen</p>
+              <img
+                src={Avatar}
+                alt="James Petersen"
+                className="header__avatar"
+              />
+            </Link>
+          ) : (
+            <div className="header__auth-buttons">
+              <button
+                className="header__button"
+                onClick={() => setActiveModal("register")}
+              >
+                Register
+              </button>
+              <button
+                className="header__button"
+                onClick={() => setActiveModal("login")}
+              >
+                Login
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </header>

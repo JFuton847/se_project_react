@@ -11,9 +11,12 @@ import { getWeather, filterWeatherData } from "../utils/weatherApi";
 import Footer from "./Footer";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext.js";
 import AddItemModal from "../components/AddItemModal";
+import RegisterModal from "../components/RegisterModal";
+import LoginModal from "../components/LoginModal";
 import { getItems, addItems, deleteItems } from "../utils/api.js";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [weatherData, setWeatherData] = useState({
     type: "",
     temp: { F: 999 },
@@ -55,6 +58,18 @@ function App() {
       });
   };
 
+  const onRegister = (values) => {
+    //Handle registration logic here
+    console.log("Registering user with values:", values);
+    closeActiveModal();
+  };
+
+  const onLogin = (values) => {
+    // Handle login logic here
+    console.log("Logging in user with values:", values);
+    closeActiveModal();
+  };
+
   const onDeleteItem = (item) => {
     deleteItems(item._id)
       .then(() => {
@@ -93,7 +108,12 @@ function App() {
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <div className="page__content">
-          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+          <Header
+            handleAddClick={handleAddClick}
+            weatherData={weatherData}
+            setActiveModal={setActiveModal}
+            isLoggedIn={isLoggedIn}
+          />
           <Routes>
             <Route
               path="/"
@@ -123,6 +143,20 @@ function App() {
             onClose={closeActiveModal}
             isOpen={activeModal === "add-garment"}
             onAddItem={onAddItem}
+          />
+        )}
+        {activeModal === "register" && (
+          <RegisterModal
+            isOpen={activeModal === "register"}
+            onClose={closeActiveModal}
+            onRegister={onRegister}
+          />
+        )}
+        {activeModal === "login" && (
+          <LoginModal
+            isOpen={activeModal === "login"}
+            onClose={closeActiveModal}
+            onLogin={onLogin}
           />
         )}
         <ItemModal

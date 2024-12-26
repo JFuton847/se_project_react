@@ -3,11 +3,13 @@ import ModalWithForm from "./ModalWithForm";
 
 const RegisterModal = ({ onClose, onRegister, isOpen }) => {
   const [createUserValues, setCreateUserValues] = useState({
-    name: "name",
-    email: "email",
-    password: "password",
-    avatarUrl: "avatarUrl",
+    name: "",
+    email: "",
+    password: "",
+    avatarUrl: "",
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setCreateUserValues((prev) => {
@@ -17,7 +19,8 @@ const RegisterModal = ({ onClose, onRegister, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onRegister(createUserValues);
+    setIsSubmitting(true);
+    onRegister(createUserValues).finally(() => setIsSubmitting(false));
     console.log("Submitting form with:", createUserValues);
   };
 
@@ -28,7 +31,6 @@ const RegisterModal = ({ onClose, onRegister, isOpen }) => {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      formRef={formRef}
     >
       <label htmlFor="name" className="modal__label">
         Name{" "}
