@@ -3,12 +3,21 @@ import Logo from "../assets/logo.svg";
 import "../blocks/header.css";
 import ToggleSwitch from "../components/ToggleSwitch";
 import Avatar from "../assets/avatar.png";
+import { useContext } from "react";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 
 function Header({ handleAddClick, weatherData, isLoggedIn, setActiveModal }) {
+  const currentUser = useContext(CurrentUserContext);
+
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
+
+  const getInitials = (name) => {
+    return name ? name.charAt(0).toUpperCase() : "";
+  };
+
   return (
     <header className="header">
       <div className="header__container">
@@ -30,30 +39,40 @@ function Header({ handleAddClick, weatherData, isLoggedIn, setActiveModal }) {
           </button>
 
           {isLoggedIn ? (
-            <Link to="/profile" className="header__link">
-              <p className="header__username">James Petersen</p>
-              <img
-                src={Avatar}
-                alt="James Petersen"
-                className="header__avatar"
-              />
-            </Link>
-          ) : (
-            <div className="header__auth-buttons">
-              <button
-                className="header__button"
-                onClick={() => setActiveModal("register")}
-              >
-                Register
-              </button>
-              <button
-                className="header__button"
-                onClick={() => setActiveModal("login")}
-              >
-                Login
-              </button>
-            </div>
-          )}
+            currentUser ? (
+              <Link to="/profile" className="header__link">
+                <p className="header__username">
+                  {currentUser.name || "Anonymous"}
+                </p>
+                {currentUser.avatar ? (
+                  <img
+                    src={currentUser.avatar}
+                    alt={currentUser.name}
+                    className="header__avatar"
+                  />
+                ) : (
+                  <div className="header__avatar-placeholder">
+                    {getInitials(currentUser.name)}
+                  </div>
+                )}
+              </Link>
+            ) : (
+              <div className="header__auth-buttons">
+                <button
+                  className="header__button"
+                  onClick={() => setActiveModal("register")}
+                >
+                  Register
+                </button>
+                <button
+                  className="header__button"
+                  onClick={() => setActiveModal("login")}
+                >
+                  Login
+                </button>
+              </div>
+            )
+          ) : null}
         </div>
       </div>
     </header>

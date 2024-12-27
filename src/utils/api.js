@@ -2,7 +2,7 @@ const baseUrl = "http://localhost:3001";
 
 function checkResponse(res) {
   if (!res.ok) {
-    return Promise.reject(new Error(`Error ${res.status}: $res.statusText}`));
+    return Promise.reject(new Error(`Error ${res.status}: ${res.statusText}`));
   }
   return res.json();
 }
@@ -12,10 +12,13 @@ function getItems() {
 }
 
 function addItems(itemData) {
+  const token = localStorage.getItem("jwt");
+
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       name: itemData.name,
@@ -26,8 +29,14 @@ function addItems(itemData) {
 }
 
 function deleteItems(itemId) {
+  const token = localStorage.getItem("jwt");
+
   return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
+    headers: {
+      "Content-Type": "application.json",
+      Authorization: `Bearer ${token}`,
+    },
   }).then(checkResponse);
 }
 
