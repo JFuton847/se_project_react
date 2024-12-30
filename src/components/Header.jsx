@@ -39,7 +39,7 @@ function Header({ handleAddClick, weatherData, isLoggedIn, setActiveModal }) {
           </button>
 
           {isLoggedIn ? (
-            currentUser ? (
+            currentUser && (
               <Link to="/profile" className="header__link">
                 <p className="header__username">
                   {currentUser.name || "Anonymous"}
@@ -56,23 +56,23 @@ function Header({ handleAddClick, weatherData, isLoggedIn, setActiveModal }) {
                   </div>
                 )}
               </Link>
-            ) : (
-              <div className="header__auth-buttons">
-                <button
-                  className="header__button"
-                  onClick={() => setActiveModal("register")}
-                >
-                  Register
-                </button>
-                <button
-                  className="header__button"
-                  onClick={() => setActiveModal("login")}
-                >
-                  Login
-                </button>
-              </div>
             )
-          ) : null}
+          ) : (
+            <div className="header__auth-buttons">
+              <button
+                className="header__button"
+                onClick={() => setActiveModal("register")}
+              >
+                Register
+              </button>
+              <button
+                className="header__button"
+                onClick={() => setActiveModal("login")}
+              >
+                Login
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </header>

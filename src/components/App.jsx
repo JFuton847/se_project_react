@@ -64,7 +64,7 @@ function App() {
   };
 
   const onRegister = (values) => {
-    signup(values)
+    return signup(values)
       .then(() => {
         console.log("User registered successfully:", values);
         return onLogin({ email: values.email, password: values.password });
@@ -77,17 +77,18 @@ function App() {
   const onLogin = (values) => {
     signin(values)
       .then((res) => {
+        console.log("Login Respons:", res);
         if (res.token) {
-          console.log("User logged in successfully:", res);
           localStorage.setItem("jwt", res.token);
+          console.log("User logged in successfully:", res);
           setIsLoggedIn(true);
           closeActiveModal();
-          fetchCurrentUser();
+          return fetchCurrentUser();
         } else {
           throw new Error("No token received from server");
         }
       })
-      .catchj((error) => {
+      .catch((error) => {
         console.error("Error during login:", error);
       });
   };
@@ -106,7 +107,7 @@ function App() {
   };
 
   const fetchCurrentUser = () => {
-    getCurrentUser()
+    return getCurrentUser()
       .then((user) => {
         setCurrentUser(user);
         setIsLoggedIn(true);
@@ -145,7 +146,8 @@ function App() {
         .then(() => {
           setIsLoggedIn(true);
         })
-        .catch(() => {
+        .catch((err) => {
+          console.error("Error during token validation:", err);
           setIsLoggedIn(false);
         });
     } else {

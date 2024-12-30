@@ -15,7 +15,7 @@ function signup(userData) {
     },
     body: JSON.stringify({
       name: userData.name,
-      avatar: userData.avatar,
+      avatar: userData.avatarUrl,
       email: userData.email,
       password: userData.password,
     }),
@@ -32,7 +32,15 @@ function signin(userData) {
       email: userData.email,
       password: userData.password,
     }),
-  }).then(checkResponse);
+  })
+    .then((res) => {
+      console.log("Signin Response:", res);
+      return checkResponse(res);
+    })
+    .catch((err) => {
+      console.error("Signin Error:", err);
+      throw err;
+    });
 }
 
 function getCurrentUser() {
@@ -45,7 +53,7 @@ function getCurrentUser() {
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
-      "Content-Type": "application.json",
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);

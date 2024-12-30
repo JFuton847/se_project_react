@@ -39,6 +39,7 @@ const RegisterModal = ({ onClose, onRegister, isOpen }) => {
           className="modal__input"
           id="name"
           placeholder="Name"
+          name="name"
           value={createUserValues.name}
           onChange={handleChange}
           required
