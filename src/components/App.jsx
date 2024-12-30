@@ -16,7 +16,8 @@ import LoginModal from "../components/LoginModal";
 import { getItems, addItems, deleteItems } from "../utils/api.js";
 import { signup, signin, getCurrentUser } from "../utils/auth.js";
 import CurrentUserContext from "../contexts/CurrentUserContext";
-import ProtectedRoute from "./ProtectedRoute.js";
+import ProtectedRoute from "./ProtectedRoute";
+import { updateUser } from "../utils/api";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

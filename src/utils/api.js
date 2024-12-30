@@ -40,4 +40,15 @@ function deleteItems(itemId) {
   }).then(checkResponse);
 }
 
-export { getItems, addItems, deleteItems, checkResponse };
+function updateUser({ name, avatar, token }) {
+  return fetch(`${baseUrl}users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(checkResponse);
+}
+
+export { getItems, addItems, deleteItems, checkResponse, updateUser };
