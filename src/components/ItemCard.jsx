@@ -35,8 +35,8 @@ function ItemCard({
         src={item.imageUrl}
       />
       {isLoggedIn && (
-        <button className={card__like - button} onClick={handleLike}>
-          {isLiked ? "Unlike" : "Like:"}
+        <button className={itemLikeButtonClassName} onClick={handleLike}>
+          {isLiked ? "Unlike" : "Like"}
         </button>
       )}
     </li>
