@@ -21,7 +21,7 @@ function ItemCard({
   const handleLike = () => {
     onCardLike({
       id: item._id,
-      isLiked: item.isLiked,
+      isLiked,
     });
   };
 
@@ -35,9 +35,10 @@ function ItemCard({
         src={item.imageUrl}
       />
       {isLoggedIn && (
-        <button className={itemLikeButtonClassName} onClick={handleLike}>
-          {isLiked ? "Unlike" : "Like"}
-        </button>
+        <button
+          className={itemLikeButtonClassName}
+          onClick={handleLike}
+        ></button>
       )}
     </li>
   );

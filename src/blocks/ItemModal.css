@@ -6,12 +6,14 @@
   flex-direction: column;
   align-items: center;
   padding: 0;
+  overflow: hidden;
 }
 
 .modal__image {
-  width: 498px;
+  width: 100%;
   height: 498px;
-  object-fit: cover;
+  /* object-fit: cover; */
+  display: block;
 }
 
 .modal__footer {

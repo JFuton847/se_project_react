@@ -4,6 +4,7 @@ import "../blocks/page.css";
 import { coordinates, APIkey } from "../utils/constants.js";
 import Header from "./Header";
 import Main from "./Main";
+import SideBar from "./SideBar";
 import ModalWithForm from "../components/ModalWithForm";
 import ItemModal from "../components/ItemModal";
 import Profile from "../components/Profile";
@@ -190,6 +191,7 @@ function App() {
               setActiveModal={setActiveModal}
               isLoggedIn={isLoggedIn}
             />
+            <SideBar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
             <Routes>
               <Route
                 path="/"

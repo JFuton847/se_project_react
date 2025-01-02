@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Avatar from "../assets/avatar.png";
 import "../blocks/SideBar.css";
 import EditProfileModal from "./EditProfileModal";
 
-function SideBar() {
+function SideBar({ isLoggedIn, handleLogout }) {
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const navigate = useNavigate();
 
   const openEditProfileModal = () => {
     setIsEditProfileModalOpen(true);
@@ -19,6 +22,12 @@ function SideBar() {
     closeEditProfileModal();
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    navigate("/");
+  };
+
   return (
     <div className="sidebar">
       <div className="sidebar__top-section">
@@ -27,6 +36,9 @@ function SideBar() {
       </div>
       <button className="sidebar__edit-btn" onClick={openEditProfileModal}>
         Change profile data
+      </button>
+      <button className="sidebar__logout-btn" onClick={handleLogout}>
+        Log out
       </button>
       <EditProfileModal
         isOpen={isEditProfileModalOpen}
