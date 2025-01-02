@@ -18,6 +18,7 @@ import { signup, signin, getCurrentUser } from "../utils/auth.js";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import ProtectedRoute from "./ProtectedRoute";
 import { updateUser } from "../utils/api";
+import * as api from "../utils/api";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -155,6 +156,27 @@ function App() {
     }
   }, []);
 
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+    !isLiked
+      ? api
+          .addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err))
+      : api
+          .removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -177,6 +199,7 @@ function App() {
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     onDeleteItem={onDeleteItem}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
@@ -199,6 +222,7 @@ function App() {
               onClose={closeActiveModal}
               isOpen={activeModal === "add-garment"}
               onAddItem={onAddItem}
+              onCardLike={handleCardLike}
             />
           )}
           {activeModal === "register" && (

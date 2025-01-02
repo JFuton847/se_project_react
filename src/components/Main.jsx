@@ -6,7 +6,13 @@ import "../blocks/cards.css";
 import "../vendor/normalize.css";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext.js";
 
-function Main({ weatherData, handleCardClick, clothingItems, onDeleteItem }) {
+function Main({
+  weatherData,
+  handleCardClick,
+  clothingItems,
+  onDeleteItem,
+  onCardLike,
+}) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   return (
     <main>
@@ -28,6 +34,7 @@ function Main({ weatherData, handleCardClick, clothingItems, onDeleteItem }) {
                   item={item}
                   onCardClick={handleCardClick}
                   onDeleteItem={onDeleteItem}
+                  onCardLike={onCardLike}
                 />
               );
             })}

@@ -34,7 +34,7 @@ function deleteItems(itemId) {
   return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
     headers: {
-      "Content-Type": "application.json",
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);

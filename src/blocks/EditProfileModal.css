@@ -9,6 +9,7 @@
   justify-content: center;
   align-items: center;
   visibility: hidden;
+  z-index: 1000;
 }
 
 .modal_opened {
@@ -69,10 +70,6 @@
   line-height: 20px;
 }
 
-.modal__radio-input {
-  margin-right: 8px;
-}
-
 .modal__submit {
   width: 124px;
   height: 36px;
@@ -94,20 +91,4 @@
   height: 16px;
   border: none;
   cursor: pointer;
-}
-
-.modal__delete-btn {
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 24px;
-  color: rgba(255, 77, 0, 1);
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  display: inline-block;
-  width: 115px;
-  height: 24px;
-  position: absolute;
-  right: 32px;
-  bottom: 68px;
 }
