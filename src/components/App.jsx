@@ -200,6 +200,8 @@ function App() {
                     clothingItems={clothingItems}
                     onDeleteItem={onDeleteItem}
                     onCardLike={handleCardLike}
+                    currentUser={currentUser}
+                    isLoggedIn={isLoggedIn}
                   />
                 }
               />

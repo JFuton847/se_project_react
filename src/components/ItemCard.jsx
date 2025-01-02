@@ -5,7 +5,15 @@ function ItemCard({
   item,
   onCardClick,
   onCardLike = () => console.warn("onCardLike is not defined"),
+  currentUser,
+  isLoggedIn,
 }) {
+  const isLiked = item.likes.some((id) => id === currentUser?._id);
+
+  const itemLikeButtonClassName = `card__like-button ${
+    isLiked ? "card__like-button_active" : ""
+  }`;
+
   const handleCardClick = () => {
     onCardClick(item);
   };
@@ -26,14 +34,11 @@ function ItemCard({
         className="card__image"
         src={item.imageUrl}
       />
-      <button
-        className={`card__like-button ${
-          item.isLiked ? "card__like-button_active" : ""
-        }`}
-        onClick={handleLike}
-      >
-        {item.isLiked ? "Unlike" : "like"}
-      </button>
+      {isLoggedIn && (
+        <button className={card__like - button} onClick={handleLike}>
+          {isLiked ? "Unlike" : "Like:"}
+        </button>
+      )}
     </li>
   );
 }
