@@ -41,7 +41,7 @@ function deleteItems(itemId) {
 }
 
 function updateUser({ name, avatar, token }) {
-  return fetch(`${baseUrl}users/me`, {
+  return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

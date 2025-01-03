@@ -129,6 +129,19 @@ function App() {
       });
   };
 
+  const handleProfileUpdate = (profileData) => {
+    const token = localStorage.getItem("jwt");
+    updateUser({ name: profileData.name, avatar: profileData.avatar, token })
+      .then((updatedUser) => {
+        setCurrentUser(updatedUser.data); // Update the state with the new user data
+        console.log("Profile updated successfully:", updatedUser);
+        closeActiveModal(); // Close the modal if it's open
+      })
+      .catch((error) => {
+        console.error("Error updating profile:", error);
+      });
+  };
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -223,6 +236,7 @@ function App() {
                       clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
                       handleLogout={handleLogout}
+                      handleProfileUpdate={handleProfileUpdate}
                     />
                   </ProtectedRoute>
                 }

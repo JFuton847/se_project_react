@@ -21,6 +21,15 @@ function Profile({
     setIsEditProfileOpen(false);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const profileData = {
+      name: e.traget.name.value,
+      avatar: e.target.avatar.value,
+    };
+    handleProfileUpdate(profileData);
+  };
+
   return (
     <div className="profile">
       <section className="profile__sidebar">
