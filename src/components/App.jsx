@@ -236,7 +236,7 @@ function App() {
                       clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
                       handleLogout={handleLogout}
-                      handleProfileUpdate={handleProfileUpdate}
+                      onUpdateProfile={handleProfileUpdate}
                     />
                   </ProtectedRoute>
                 }

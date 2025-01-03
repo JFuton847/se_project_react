@@ -27,7 +27,7 @@ function Profile({
       name: e.traget.name.value,
       avatar: e.target.avatar.value,
     };
-    handleProfileUpdate(profileData);
+    onProfileUpdate(profileData);
   };
 
   return (
