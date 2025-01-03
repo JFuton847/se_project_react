@@ -1,13 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Avatar from "../assets/avatar.png";
 import "../blocks/SideBar.css";
 import EditProfileModal from "./EditProfileModal";
 
-function SideBar({ isLoggedIn, handleLogout }) {
+function SideBar({ handleLogout }) {
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const navigate = useNavigate();
 
   const openEditProfileModal = () => {
     setIsEditProfileModalOpen(true);
@@ -20,12 +17,6 @@ function SideBar({ isLoggedIn, handleLogout }) {
   const handleUpdateProfile = (updatedData) => {
     console.log("Updated profile:", updatedData);
     closeEditProfileModal();
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setIsLoggedIn(false);
-    navigate("/");
   };
 
   return (

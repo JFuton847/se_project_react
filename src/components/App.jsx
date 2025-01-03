@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../blocks/page.css";
 import { coordinates, APIkey } from "../utils/constants.js";
 import Header from "./Header";
 import Main from "./Main";
-import SideBar from "./SideBar";
 import ModalWithForm from "../components/ModalWithForm";
 import ItemModal from "../components/ItemModal";
 import Profile from "../components/Profile";
@@ -33,10 +33,18 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+  const navigate = useNavigate();
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem("jwt");
+    setCurrentUser(null);
+    navigate("/");
   };
 
   const handleAddClick = () => {
@@ -191,7 +199,6 @@ function App() {
               setActiveModal={setActiveModal}
               isLoggedIn={isLoggedIn}
             />
-            <SideBar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
             <Routes>
               <Route
                 path="/"

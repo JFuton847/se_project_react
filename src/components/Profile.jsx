@@ -9,6 +9,7 @@ function Profile({
   clothingItems,
   handleAddClick,
   onUpdateProfile,
+  handleLogout,
 }) {
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
 
@@ -23,7 +24,7 @@ function Profile({
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <SideBar />
+        <SideBar handleLogout={handleLogout} />
       </section>
       <section className="profile__clothing-items">
         <ClothesSection
