@@ -60,3 +60,13 @@
   text-decoration: none;
   color: black;
 }
+
+.header__button {
+  margin-top: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24.8px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}

@@ -30,13 +30,15 @@ function Header({ handleAddClick, weatherData, isLoggedIn, setActiveModal }) {
 
         <div className="header__user-container">
           <ToggleSwitch />
-          <button
-            onClick={handleAddClick}
-            type="button"
-            className="header__add-clothes-btn"
-          >
-            + Add Clothes
-          </button>
+          {isLoggedIn && ( // Conditionally render the Add Clothes button
+            <button
+              onClick={handleAddClick}
+              type="button"
+              className="header__add-clothes-btn"
+            >
+              + Add Clothes
+            </button>
+          )}
 
           {isLoggedIn ? (
             currentUser && (
@@ -63,13 +65,13 @@ function Header({ handleAddClick, weatherData, isLoggedIn, setActiveModal }) {
                 className="header__button"
                 onClick={() => setActiveModal("register")}
               >
-                Register
+                Sign Up
               </button>
               <button
                 className="header__button"
                 onClick={() => setActiveModal("login")}
               >
-                Login
+                Log In
               </button>
             </div>
           )}
