@@ -16,7 +16,7 @@ import RegisterModal from "../components/RegisterModal";
 import LoginModal from "../components/LoginModal";
 import { getItems, addItems, deleteItems } from "../utils/api.js";
 import { signup, signin, getCurrentUser } from "../utils/auth.js";
-import CurrentUserContext from "../contexts/CurrentUserContext";
+import CurrentUserContext from "../contexts/CurrentUserContext.jsx";
 import ProtectedRoute from "./ProtectedRoute";
 import { updateUser } from "../utils/api";
 import * as api from "../utils/api";
@@ -53,6 +53,11 @@ function App() {
 
   const closeActiveModal = () => {
     setActiveModal("");
+  };
+
+  const onUpdateProfile = (updatedData) => {
+    console.log("Updated profile:", updatedData);
+    closeEditProfileModal();
   };
 
   const handleToggleSwitchChange = () => {

@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
 import "../blocks/header.css";
 import ToggleSwitch from "../components/ToggleSwitch";
-import Avatar from "../assets/avatar.png";
+// import Avatar from "../assets/avatar.png";
 import { useContext } from "react";
-import CurrentUserContext from "../contexts/CurrentUserContext";
+import CurrentUserContext from "../contexts/CurrentUserContext.jsx";
 
 function Header({ handleAddClick, weatherData, isLoggedIn, setActiveModal }) {
   const currentUser = useContext(CurrentUserContext);
@@ -44,7 +44,7 @@ function Header({ handleAddClick, weatherData, isLoggedIn, setActiveModal }) {
             currentUser && (
               <Link to="/profile" className="header__link">
                 <p className="header__username">
-                  {currentUser.name || "Anonymous"}
+                  {currentUser?.name || "Anonymous"}
                 </p>
                 {currentUser.avatar ? (
                   <img

@@ -1,10 +1,8 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import "../blocks/EditProfileModal.css";
-import CurrentUserContext from "../contexts/CurrentUserContext";
+// import CurrentUserContext from "../contexts/CurrentUserContext";
 
-function EditProfileModal({ isOpen, onClose, onUpdateProfile }) {
-  const currentUser = useContext(CurrentUserContext);
-
+function EditProfileModal({ isOpen, onClose, onUpdateProfile, currentUser }) {
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
 
@@ -13,11 +11,20 @@ function EditProfileModal({ isOpen, onClose, onUpdateProfile }) {
       setName(currentUser.name || "");
       setAvatar(currentUser.avatar || "");
     }
-  }, [currentUser, isOpen]);
+  }, [currentUser]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onUpdateProfile({ name, avatar });
+    if (currentUser) {
+      const updatedData = {
+        name,
+        avatar,
+      };
+      onUpdateProfile(updatedData);
+      onClose();
+    } else {
+      console.error("No user data found.");
+    }
   };
 
   return (

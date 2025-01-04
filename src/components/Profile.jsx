@@ -1,16 +1,18 @@
+import { useContext, useState } from "react";
+import CurrentUserContext from "../contexts/CurrentUserContext.jsx";
 import SideBar from "../components/SideBar";
 import ClothesSection from "../components/ClothesSection";
 import EditProfileModal from "./EditProfileModal";
 import "../blocks/Profile.css";
-import { useState } from "react";
 
 function Profile({
   onCardClick,
   clothingItems,
   handleAddClick,
-  onUpdateProfile,
   handleLogout,
+  onUpdateProfile,
 }) {
+  const currentUser = useContext(CurrentUserContext);
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
 
   const handleEditProfileClick = () => {
@@ -21,19 +23,13 @@ function Profile({
     setIsEditProfileOpen(false);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const profileData = {
-      name: e.traget.name.value,
-      avatar: e.target.avatar.value,
-    };
-    onProfileUpdate(profileData);
-  };
-
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <SideBar handleLogout={handleLogout} />
+        <SideBar
+          handleLogout={handleLogout}
+          onEditProfile={handleEditProfileClick}
+        />
       </section>
       <section className="profile__clothing-items">
         <ClothesSection
@@ -42,6 +38,14 @@ function Profile({
           handleAddClick={handleAddClick}
         />
       </section>
+      {isEditProfileOpen && (
+        <EditProfileModal
+          isOpen={isEditProfileOpen}
+          onClose={closeEditProfileModal}
+          onUpdateProfile={onUpdateProfile}
+          currentUser={currentUser}
+        />
+      )}
     </div>
   );
 }
