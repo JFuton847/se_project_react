@@ -84,6 +84,14 @@ const RegisterModal = ({ onClose, onRegister, isOpen }) => {
           required
         />
       </label>
+      <div>
+        <button type="button" className="modal__signup">
+          Sign up
+        </button>
+        <button type="submit" className="modal__submit-other">
+          or Log in
+        </button>
+      </div>
     </ModalWithForm>
   );
 };

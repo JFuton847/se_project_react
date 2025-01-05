@@ -20,9 +20,6 @@ function ModalWithForm({
         ></button>
         <form ref={formRef} onSubmit={onSubmit} className="modal__form">
           {children}
-          <button type="submit" onClick={onSubmit} className="modal__submit">
-            {buttonText}
-          </button>
         </form>
       </div>
     </div>

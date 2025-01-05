@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import ModalWithForm from "../components/ModalWithForm";
+import "../blocks/ModalWithForm.css";
 
 const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
   const [name, setName] = useState("");
@@ -106,6 +107,9 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
           Cold
         </label>
       </fieldset>
+      <button className="modal__submit" type="submit">
+        {isSubmitting ? "Adding..." : "Add garment"}
+      </button>
     </ModalWithForm>
   );
 };
