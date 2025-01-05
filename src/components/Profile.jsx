@@ -11,6 +11,8 @@ function Profile({
   handleAddClick,
   handleLogout,
   onUpdateProfile,
+  isLoggedIn,
+  onCardLike,
 }) {
   const currentUser = useContext(CurrentUserContext);
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
@@ -36,6 +38,8 @@ function Profile({
           onCardClick={onCardClick}
           clothingItems={clothingItems}
           handleAddClick={handleAddClick}
+          isLoggedIn={isLoggedIn}
+          onCardLike={onCardLike}
         />
       </section>
       {isEditProfileOpen && (

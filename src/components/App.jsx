@@ -136,11 +136,18 @@ function App() {
 
   const handleProfileUpdate = (profileData) => {
     const token = localStorage.getItem("jwt");
+
     updateUser({ name: profileData.name, avatar: profileData.avatar, token })
       .then((updatedUser) => {
-        setCurrentUser(updatedUser.data); // Update the state with the new user data
+        // Merge the existing currentUser data with the updated fields
+        setCurrentUser((prevUser) => ({
+          ...prevUser, // Keep all other properties of the user
+          name: updatedUser.name, // Update only the name
+          avatar: updatedUser.avatar, // Update only the avatar
+        }));
+
         console.log("Profile updated successfully:", updatedUser);
-        closeActiveModal(); // Close the modal if it's open
+        closeActiveModal();
       })
       .catch((error) => {
         console.error("Error updating profile:", error);
@@ -242,6 +249,8 @@ function App() {
                       handleAddClick={handleAddClick}
                       handleLogout={handleLogout}
                       onUpdateProfile={handleProfileUpdate}
+                      isLoggedIn={isLoggedIn}
+                      onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }
