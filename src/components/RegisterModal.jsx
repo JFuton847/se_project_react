@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import ModalWithForm from "./ModalWithForm";
 
-const RegisterModal = ({ onClose, onRegister, isOpen }) => {
+const RegisterModal = ({ onClose, onRegister, isOpen, openLoginModal }) => {
   const [createUserValues, setCreateUserValues] = useState({
     name: "",
     email: "",
@@ -88,7 +88,11 @@ const RegisterModal = ({ onClose, onRegister, isOpen }) => {
         <button type="button" className="modal__signup">
           Sign up
         </button>
-        <button type="submit" className="modal__submit-other">
+        <button
+          type="submit"
+          className="modal__submit-other"
+          onClick={openLoginModal}
+        >
           or Log in
         </button>
       </div>

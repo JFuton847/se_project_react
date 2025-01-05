@@ -211,6 +211,14 @@ function App() {
           .catch((err) => console.log(err));
   };
 
+  const openRegisterModal = () => {
+    setActiveModal("register");
+  };
+
+  const openLoginModal = () => {
+    setActiveModal("login");
+  };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -284,6 +292,18 @@ function App() {
             card={selectedCard}
             onClose={closeActiveModal}
             onDeleteItem={onDeleteItem}
+          />
+          <LoginModal
+            isOpen={activeModal === "login"}
+            onClose={closeActiveModal}
+            onLogin={onLogin}
+            openRegisterModal={openRegisterModal} // Pass this prop
+          />
+          <RegisterModal
+            isOpen={activeModal === "register"}
+            onClose={closeActiveModal}
+            onRegister={onRegister}
+            openLoginModal={openLoginModal} // Pass this prop
           />
           <Footer />
         </CurrentTemperatureUnitContext.Provider>
