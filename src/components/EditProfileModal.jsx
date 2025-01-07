@@ -22,19 +22,10 @@ function EditProfileModal({ isOpen, onClose, onUpdateProfile, currentUser }) {
 
     console.log("Submitting updatedData:", updatedData);
 
-    // Ensure onUpdateProfile is correctly called and returns a promise
-    onUpdateProfile(updatedData)
-      .then((result) => {
-        console.log("Profile updated successfully:", result);
-        onClose(); // Close modal after successful update
-      })
-      .catch((error) => {
-        console.error("Failed to update profile:", error);
-        alert("Failed to update profile. Please try again.");
-      })
-      .finally(() => {
-        setIsSubmitting(false); // Stop loading indicator
-      });
+    onUpdateProfile(updatedData).finally(() => {
+      setIsSubmitting(false);
+      onClose();
+    });
   };
 
   return (

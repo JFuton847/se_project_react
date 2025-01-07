@@ -137,7 +137,11 @@ function App() {
   const handleProfileUpdate = (profileData) => {
     const token = localStorage.getItem("jwt");
 
-    updateUser({ name: profileData.name, avatar: profileData.avatar, token })
+    return updateUser({
+      name: profileData.name,
+      avatar: profileData.avatar,
+      token,
+    })
       .then((updatedUser) => {
         // Merge the existing currentUser data with the updated fields
         setCurrentUser((prevUser) => ({
