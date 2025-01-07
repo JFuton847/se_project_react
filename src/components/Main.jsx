@@ -16,7 +16,7 @@ function Main({
   isLoggedIn,
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
-  const { currentUser } = useContext(CurrentUserContext) || {};
+  const currentUser = useContext(CurrentUserContext) || {};
   return (
     <main>
       <WeatherCard weatherData={weatherData} />

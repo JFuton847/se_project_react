@@ -38,36 +38,35 @@ function EditProfileModal({ isOpen, onClose, onUpdateProfile, currentUser }) {
   };
 
   return (
-    <ModalWithForm title="Edit Profile" isOpen={isOpen} onClose={onClose}>
-      <form className="modal__form" onSubmit={handleSubmit}>
-        <label className="modal__label">
-          Name *
-          <input
-            type="text"
-            className="modal__input"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </label>
-        <label className="modal__label">
-          Avatar (URL) *
-          <input
-            type="url"
-            className="modal__input"
-            value={avatar}
-            onChange={(e) => setAvatar(e.target.value)}
-            required
-          />
-        </label>
-        <button
-          type="submit"
-          className="modal__save-btn"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? "Updating..." : "Save changes"}
-        </button>
-      </form>
+    <ModalWithForm
+      title="Edit Profile"
+      isOpen={isOpen}
+      onClose={onClose}
+      onSubmit={handleSubmit}
+    >
+      <label className="modal__label">
+        Name *
+        <input
+          type="text"
+          className="modal__input"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+      </label>
+      <label className="modal__label">
+        Avatar (URL) *
+        <input
+          type="url"
+          className="modal__input"
+          value={avatar}
+          onChange={(e) => setAvatar(e.target.value)}
+          required
+        />
+      </label>
+      <button type="submit" className="modal__save-btn" disabled={isSubmitting}>
+        {isSubmitting ? "Updating..." : "Save changes"}
+      </button>
     </ModalWithForm>
   );
 }
