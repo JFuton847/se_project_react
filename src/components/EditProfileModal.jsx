@@ -15,13 +15,25 @@ function EditProfileModal({ isOpen, onClose, onUpdateProfile, currentUser }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (currentUser) {
+      setLoading(true); // Start loading
       const updatedData = {
         name,
         avatar,
       };
-      onUpdateProfile(updatedData);
-      onClose();
+
+      onUpdateProfile(updatedData)
+        .then(() => {
+          onClose(); // Close modal only if the update is successful
+        })
+        .catch((error) => {
+          console.error("Failed to update profile:", error);
+          // Optionally, show error feedback to the user
+        })
+        .finally(() => {
+          setLoading(false); // Stop loading regardless of the result
+        });
     } else {
       console.error("No user data found.");
     }

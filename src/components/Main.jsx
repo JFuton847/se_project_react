@@ -5,6 +5,7 @@ import ItemCard from "./ItemCard";
 import "../blocks/cards.css";
 import "../vendor/normalize.css";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext.js";
+import CurrentUserContext from "../contexts/CurrentUserContext.jsx";
 
 function Main({
   weatherData,
@@ -12,10 +13,10 @@ function Main({
   clothingItems,
   onDeleteItem,
   onCardLike,
-  currentUser,
   isLoggedIn,
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  const { currentUser } = useContext(CurrentUserContext) || {};
   return (
     <main>
       <WeatherCard weatherData={weatherData} />

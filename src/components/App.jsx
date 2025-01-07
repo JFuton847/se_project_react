@@ -242,7 +242,6 @@ function App() {
                     clothingItems={clothingItems}
                     onDeleteItem={onDeleteItem}
                     onCardLike={handleCardLike}
-                    currentUser={currentUser}
                     isLoggedIn={isLoggedIn}
                   />
                 }
@@ -271,20 +270,6 @@ function App() {
               isOpen={activeModal === "add-garment"}
               onAddItem={onAddItem}
               onCardLike={handleCardLike}
-            />
-          )}
-          {activeModal === "register" && (
-            <RegisterModal
-              isOpen={activeModal === "register"}
-              onClose={closeActiveModal}
-              onRegister={onRegister}
-            />
-          )}
-          {activeModal === "login" && (
-            <LoginModal
-              isOpen={activeModal === "login"}
-              onClose={closeActiveModal}
-              onLogin={onLogin}
             />
           )}
           <ItemModal
