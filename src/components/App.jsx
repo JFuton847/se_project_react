@@ -287,14 +287,6 @@ function App() {
               onCardLike={handleCardLike}
             />
           )}
-          {activeModal === "edit-profile" && (
-            <EditProfileModal
-              isOpen={activeModal === "edit-profile"}
-              onClose={closeEditProfileModal}
-              onUpdateProfile={onUpdateProfile}
-              currentUser={currentUser}
-            />
-          )}
           <ItemModal
             isOpen={activeModal === "preview"}
             card={selectedCard}

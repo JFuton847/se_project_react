@@ -50,7 +50,6 @@ function Profile({
           isOpen={activeModal === "editProfile"}
           onClose={closeEditProfileModal}
           onUpdateProfile={onUpdateProfile}
-          currentUser={currentUser}
         />
       )}
     </div>
