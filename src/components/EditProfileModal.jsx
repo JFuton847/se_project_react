@@ -1,10 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../blocks/EditProfileModal.css";
-// import CurrentUserContext from "../contexts/CurrentUserContext";
+import ModalWithForm from "./ModalWithForm";
 
 function EditProfileModal({ isOpen, onClose, onUpdateProfile, currentUser }) {
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (currentUser) {
@@ -15,66 +16,59 @@ function EditProfileModal({ isOpen, onClose, onUpdateProfile, currentUser }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
-    if (currentUser) {
-      setLoading(true); // Start loading
-      const updatedData = {
-        name,
-        avatar,
-      };
+    const updatedData = { name, avatar };
 
-      onUpdateProfile(updatedData)
-        .then(() => {
-          onClose(); // Close modal only if the update is successful
-        })
-        .catch((error) => {
-          console.error("Failed to update profile:", error);
-          // Optionally, show error feedback to the user
-        })
-        .finally(() => {
-          setLoading(false); // Stop loading regardless of the result
-        });
-    } else {
-      console.error("No user data found.");
-    }
+    console.log("Submitting updatedData:", updatedData);
+
+    // Ensure onUpdateProfile is correctly called and returns a promise
+    onUpdateProfile(updatedData)
+      .then((result) => {
+        console.log("Profile updated successfully:", result);
+        onClose(); // Close modal after successful update
+      })
+      .catch((error) => {
+        console.error("Failed to update profile:", error);
+        alert("Failed to update profile. Please try again.");
+      })
+      .finally(() => {
+        setIsSubmitting(false); // Stop loading indicator
+      });
   };
 
   return (
-    <div className={`modal ${isOpen && "modal_opened"}`}>
-      <div className="modal__content">
+    <ModalWithForm title="Edit Profile" isOpen={isOpen} onClose={onClose}>
+      <form className="modal__form" onSubmit={handleSubmit}>
+        <label className="modal__label">
+          Name *
+          <input
+            type="text"
+            className="modal__input"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </label>
+        <label className="modal__label">
+          Avatar (URL) *
+          <input
+            type="url"
+            className="modal__input"
+            value={avatar}
+            onChange={(e) => setAvatar(e.target.value)}
+            required
+          />
+        </label>
         <button
-          onClick={onClose}
-          type="button"
-          className="modal__close"
-        ></button>
-        <h2 className="modal__header">Change profile data</h2>
-        <form className="modal__form" onSubmit={handleSubmit}>
-          <label className="modal__label">
-            Name *
-            <input
-              type="text"
-              className="modal__input"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </label>
-          <label className="modal__label">
-            Avatar *
-            <input
-              type="url"
-              className="modal__input"
-              value={avatar}
-              onChange={(e) => setAvatar(e.target.value)}
-              required
-            />
-          </label>
-          <button type="submit" className="modal__save-btn">
-            Save changes
-          </button>
-        </form>
-      </div>
-    </div>
+          type="submit"
+          className="modal__save-btn"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Updating..." : "Save changes"}
+        </button>
+      </form>
+    </ModalWithForm>
   );
 }
 

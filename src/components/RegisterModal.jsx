@@ -45,7 +45,7 @@ const RegisterModal = ({ onClose, onRegister, isOpen, openLoginModal }) => {
           required
         />
       </label>
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="login-email" className="modal__label">
         Email{" "}
         <input
           type="email"
