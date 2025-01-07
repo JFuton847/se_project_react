@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import CurrentUserContext from "../contexts/CurrentUserContext.jsx";
 import "../blocks/itemcard.css";
 import "../blocks/card.css";
 
@@ -5,9 +7,9 @@ function ItemCard({
   item,
   onCardClick,
   onCardLike = () => console.warn("onCardLike is not defined"),
-  currentUser,
   isLoggedIn,
 }) {
+  const currentUser = useContext(CurrentUserContext);
   const isLiked = item.likes.some((id) => id === currentUser?._id);
 
   const itemLikeButtonClassName = `card__like-button ${

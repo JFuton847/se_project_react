@@ -24,11 +24,18 @@ function EditProfileModal({ isOpen, onClose, onUpdateProfile, currentUser }) {
 
     console.log("Submitting updatedData:", updatedData);
 
-    onUpdateProfile(updatedData);
+    onUpdateProfile(updatedData).finally(() => {
+      setIsSubmitting(false);
+    });
   };
 
   return (
-    <ModalWithForm title="Edit Profile" isOpen={isOpen} onSubmit={handleSubmit}>
+    <ModalWithForm
+      title="Edit Profile"
+      isOpen={isOpen}
+      onSubmit={handleSubmit}
+      onClose={onClose}
+    >
       <label className="modal__label">
         Name *
         <input
