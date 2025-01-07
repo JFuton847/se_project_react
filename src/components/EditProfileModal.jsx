@@ -22,10 +22,16 @@ function EditProfileModal({ isOpen, onClose, onUpdateProfile, currentUser }) {
 
     console.log("Submitting updatedData:", updatedData);
 
-    onUpdateProfile(updatedData).finally(() => {
-      setIsSubmitting(false);
-      onClose();
-    });
+    onUpdateProfile(updatedData)
+      .then(() => {
+        console.log("Profile update completed.");
+      })
+      .catch((error) => {
+        console.error("Profile update failed:", error);
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   return (

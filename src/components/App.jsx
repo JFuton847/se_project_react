@@ -145,12 +145,14 @@ function App() {
       .then((updatedUser) => {
         // Merge the existing currentUser data with the updated fields
         setCurrentUser((prevUser) => ({
-          ...prevUser, // Keep all other properties of the user
-          name: updatedUser.name, // Update only the name
-          avatar: updatedUser.avatar, // Update only the avatar
+          ...prevUser,
+          name: updatedUser.name,
+          avatar: updatedUser.avatar,
         }));
 
         console.log("Profile updated successfully:", updatedUser);
+
+        // Close the modal after a successful update
         closeActiveModal();
       })
       .catch((error) => {
@@ -274,6 +276,14 @@ function App() {
               isOpen={activeModal === "add-garment"}
               onAddItem={onAddItem}
               onCardLike={handleCardLike}
+            />
+          )}
+          {activeModal === "edit-profile" && (
+            <EditProfileModal
+              isOpen={activeModal === "edit-profile"}
+              onClose={closeActiveModal}
+              onUpdateProfile={handleProfileUpdate}
+              currentUser={currentUser}
             />
           )}
           <ItemModal
