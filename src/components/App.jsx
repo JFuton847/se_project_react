@@ -55,10 +55,10 @@ function App() {
     setActiveModal("");
   };
 
-  const onUpdateProfile = (updatedData) => {
-    console.log("Updated profile:", updatedData);
-    closeEditProfileModal();
-  };
+  // const onUpdateProfile = (updatedData) => {
+  //   console.log("Updated profile:", updatedData);
+  //   closeActiveModal();
+  // };
 
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
@@ -224,6 +224,8 @@ function App() {
   const openLoginModal = () => {
     setActiveModal("login");
   };
+
+  console.log(activeModal);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

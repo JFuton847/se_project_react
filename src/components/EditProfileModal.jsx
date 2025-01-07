@@ -14,6 +14,8 @@ function EditProfileModal({ isOpen, onClose, onUpdateProfile, currentUser }) {
     }
   }, [currentUser]);
 
+  console.log(isOpen);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -22,25 +24,11 @@ function EditProfileModal({ isOpen, onClose, onUpdateProfile, currentUser }) {
 
     console.log("Submitting updatedData:", updatedData);
 
-    onUpdateProfile(updatedData)
-      .then(() => {
-        console.log("Profile update completed.");
-      })
-      .catch((error) => {
-        console.error("Profile update failed:", error);
-      })
-      .finally(() => {
-        setIsSubmitting(false);
-      });
+    onUpdateProfile(updatedData);
   };
 
   return (
-    <ModalWithForm
-      title="Edit Profile"
-      isOpen={isOpen}
-      onClose={onClose}
-      onSubmit={handleSubmit}
-    >
+    <ModalWithForm title="Edit Profile" isOpen={isOpen} onSubmit={handleSubmit}>
       <label className="modal__label">
         Name *
         <input
