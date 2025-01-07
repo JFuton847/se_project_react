@@ -13,16 +13,19 @@ function Profile({
   onUpdateProfile,
   isLoggedIn,
   onCardLike,
+  openUpdateProfileModal,
+  closeActiveModal,
+  activeModal,
 }) {
   const currentUser = useContext(CurrentUserContext);
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
 
   const handleEditProfileClick = () => {
-    setIsEditProfileOpen(true);
+    openUpdateProfileModal();
   };
 
   const closeEditProfileModal = () => {
-    setIsEditProfileOpen(false);
+    closeActiveModal();
   };
 
   return (
@@ -44,7 +47,7 @@ function Profile({
       </section>
       {isEditProfileOpen && (
         <EditProfileModal
-          isOpen={isEditProfileOpen}
+          isOpen={activeModal === "editProfile"}
           onClose={closeEditProfileModal}
           onUpdateProfile={onUpdateProfile}
           currentUser={currentUser}

@@ -225,6 +225,10 @@ function App() {
     setActiveModal("login");
   };
 
+  const openUpdateProfileModal = () => {
+    setActiveModal("editProfile");
+  };
+
   console.log(activeModal);
 
   return (
@@ -266,6 +270,9 @@ function App() {
                       onUpdateProfile={handleProfileUpdate}
                       isLoggedIn={isLoggedIn}
                       onCardLike={handleCardLike}
+                      openUpdateProfileModal={openUpdateProfileModal}
+                      closeActiveModal={closeActiveModal}
+                      activeModal={activeModal}
                     />
                   </ProtectedRoute>
                 }
@@ -283,8 +290,8 @@ function App() {
           {activeModal === "edit-profile" && (
             <EditProfileModal
               isOpen={activeModal === "edit-profile"}
-              onClose={closeActiveModal}
-              onUpdateProfile={handleProfileUpdate}
+              onClose={closeEditProfileModal}
+              onUpdateProfile={onUpdateProfile}
               currentUser={currentUser}
             />
           )}
