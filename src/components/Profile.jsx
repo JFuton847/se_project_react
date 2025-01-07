@@ -45,7 +45,7 @@ function Profile({
           onCardLike={onCardLike}
         />
       </section>
-      {isEditProfileOpen && (
+      {activeModal === "editProfile" && (
         <EditProfileModal
           isOpen={activeModal === "editProfile"}
           onClose={closeEditProfileModal}
