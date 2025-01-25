@@ -19,6 +19,7 @@ const RegisterModal = ({ onClose, onRegister, isOpen, openLoginModal }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("submitted");
     setIsSubmitting(true);
     onRegister(createUserValues).finally(() => setIsSubmitting(false));
     console.log("Submitting form with:", createUserValues);
@@ -85,7 +86,7 @@ const RegisterModal = ({ onClose, onRegister, isOpen, openLoginModal }) => {
         />
       </label>
       <div>
-        <button type="button" className="modal__signup">
+        <button onClick={handleSubmit} type="button" className="modal__signup">
           Sign up
         </button>
         <button
